@@ -34,12 +34,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      
         <ListContact
           contacts={this.state.contacts}
           removeContact={this.removeContact}
         />
-      </div>
     );
   }
 }
