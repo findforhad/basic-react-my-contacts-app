@@ -1,5 +1,6 @@
 import React from "react";
 import ListContact from "./ListContacts";
+import PropTypes from "prop-types";
 
 class App extends React.Component {
   state = {
@@ -42,5 +43,10 @@ class App extends React.Component {
     );
   }
 }
+
+ListContact.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  removeContact: PropTypes.func.isRequired
+};
 
 export default App;
