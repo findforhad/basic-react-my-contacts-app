@@ -12,12 +12,13 @@ class ListContact extends React.Component {
   clearQuery = () => this.setState({ query: "" });
 
   render() {
+    const { query } = this.state;
+    const { removeContact, contacts } = this.props;
+
     let showingContacts;
-    if (this.state.query) {
+    if (query) {
       let match = new RegExp(escapeRegExp(this.state.query), "ig");
-      showingContacts = this.props.contacts.filter(contact =>
-        match.test(contact.name)
-      );
+      showingContacts = contacts.filter(contact => match.test(contact.name));
     } else {
       showingContacts = this.props.contacts;
     }
@@ -31,12 +32,19 @@ class ListContact extends React.Component {
             value={this.state.query}
             onChange={event => this.updateQuery(event.target.value)}
           />
-          {this.state.query !== "" ? (
+          {query !== "" ? (
             <button className="contact-remove" onClick={this.clearQuery} />
           ) : null}
         </div>
 
-        {JSON.stringify(this.state)}
+        {/* {JSON.stringify(this.state)} */}
+
+        {showingContacts.length !== contacts.length ? (
+          <div className="showing-contacts">
+            Showing {showingContacts.length} of {contacts.length} total.
+            <button onClick={this.clearQuery}>Show All</button>
+          </div>
+        ) : null}
 
         <ol className="contact-list">
           {showingContacts.map(contact => {
@@ -54,7 +62,7 @@ class ListContact extends React.Component {
                 </div>
                 <button
                   className="contact-remove"
-                  onClick={() => this.props.removeContact(contact)}
+                  onClick={() => removeContact(contact)}
                 />
               </li>
             );
