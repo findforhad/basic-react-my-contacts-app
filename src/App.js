@@ -12,10 +12,11 @@ class App extends React.Component {
     await getAll().then(contacts => this.setState({ contacts }));
   }
 
-  removeContact = contact => {
+  removeContact = async contact => {
     this.setState(oldState => ({
       contacts: oldState.contacts.filter(c => c.id !== contact.id)
     }));
+    await remove(contact)
   };
 
   render() {
