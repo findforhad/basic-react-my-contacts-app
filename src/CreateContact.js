@@ -1,10 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import ImageInput from "./ImageInput";
 
 class CreateContact extends React.Component {
   render() {
     return (
       <div>
-        <h3>Renderd Some UI</h3>
+        <Link className="close-create-contact" to="/" />
+        <form className="create-contact-form">
+          <ImageInput
+            className="create-contact-avatar-input"
+            maxHeight={68}
+            name="avaterInput"
+          />
+          <div className="create-contact-details">
+            <input type="text" name="name" placeholder="Name" />
+            <input type="text" name="email" placeholder="Email" />
+            <button>Add Contact</button>
+          </div>
+        </form>
       </div>
     );
   }
