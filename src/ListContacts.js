@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import escapeRegExp from "escape-string-regexp";
 import sortBy from "sort-by";
 
@@ -33,11 +34,7 @@ class ListContact extends React.Component {
             onChange={event => this.updateQuery(event.target.value)}
             placeholder="Search Contacts"
           />
-          <a
-            className="add-contact"
-            href="#create"
-            onClick={this.props.navigateToCreate}
-          />
+          <Link to="#create" className="add-contact" />
         </div>
 
         {/* {JSON.stringify(this.state)} */}
