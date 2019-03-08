@@ -34,7 +34,7 @@ class ListContact extends React.Component {
             onChange={event => this.updateQuery(event.target.value)}
             placeholder="Search Contacts"
           />
-          <Link to="#create" className="add-contact" />
+          <Link to="/create" className="add-contact" />
         </div>
 
         {/* {JSON.stringify(this.state)} */}

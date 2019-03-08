@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Route } from "react-router-dom";
 import { getAll, remove, create } from "./utils/ContactAPI";
 import ListContact from "./ListContacts";
 import CreateContact from "./CreateContact";
 
 class App extends React.Component {
   state = {
-    contacts: [],
-    screen: "list"
+    contacts: []
   };
 
   async componentDidMount() {
@@ -23,15 +23,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.screen === "list" && (
-          <ListContact
-            contacts={this.state.contacts}
-            removeContact={this.removeContact}
-            navigateToCreate={() => this.setState({screen: "create" })}
-          />
-        )}
-        {this.state.screen === "create" && <CreateContact />}
+      <div className="app">
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <ListContact
+              contacts={this.state.contacts}
+              removeContact={this.removeContact}
+            />
+          )}
+        />
+        <Route path="/create" component={CreateContact} />
       </div>
     );
   }
