@@ -7,7 +7,7 @@ import CreateContact from "./CreateContact";
 class App extends React.Component {
   state = {
     contacts: [],
-    screen: "create"
+    screen: "list"
   };
 
   async componentDidMount() {
@@ -28,6 +28,7 @@ class App extends React.Component {
           <ListContact
             contacts={this.state.contacts}
             removeContact={this.removeContact}
+            navigateToCreate={() => this.setState({screen: "create" })}
           />
         )}
         {this.state.screen === "create" && <CreateContact />}

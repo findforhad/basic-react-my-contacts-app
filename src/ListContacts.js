@@ -31,10 +31,13 @@ class ListContact extends React.Component {
             className="search-contacts"
             value={this.state.query}
             onChange={event => this.updateQuery(event.target.value)}
+            placeholder="Search Contacts"
           />
-          {query !== "" ? (
-            <button className="contact-remove" onClick={this.clearQuery} />
-          ) : null}
+          <a
+            className="add-contact"
+            href="#create"
+            onClick={this.props.navigateToCreate}
+          />
         </div>
 
         {/* {JSON.stringify(this.state)} */}
