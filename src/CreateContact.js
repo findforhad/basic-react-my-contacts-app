@@ -7,7 +7,7 @@ class CreateContact extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const value = serializeForm(e.target, { hash: true });
-    console.log(value);
+    this.props.onCreateContact(value);
   };
   render() {
     return (

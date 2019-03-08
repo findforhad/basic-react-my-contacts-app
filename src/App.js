@@ -21,6 +21,14 @@ class App extends React.Component {
     await remove(contact);
   };
 
+  createContact = async contact => {
+    await create(contact).then(contact => {
+      this.setState(state => ({
+        contacts: state.contacts.concat(contact)
+      }));
+    });
+  };
+
   render() {
     return (
       <div className="app">
@@ -34,7 +42,17 @@ class App extends React.Component {
             />
           )}
         />
-        <Route path="/create" component={CreateContact} />
+        <Route
+          path="/create"
+          component={({ history }) => (
+            <CreateContact
+              onCreateContact={contact => {
+                this.createContact(contact);
+                history.push("/");
+              }}
+            />
+          )}
+        />
       </div>
     );
   }

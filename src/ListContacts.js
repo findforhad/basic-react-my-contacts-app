@@ -53,7 +53,7 @@ class ListContact extends React.Component {
                 <div
                   className="contact-avatar"
                   style={{
-                    backgroundImage: `url(${contact.avatarURL})`
+                    backgroundImage: `url(${contact.avatarURL || contact.avaterInput})`
                   }}
                 />
                 <div className="contact-details">
