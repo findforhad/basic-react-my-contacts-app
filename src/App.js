@@ -1,11 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { getAll, remove, create } from "./utils/ContactAPI";
 import ListContact from "./ListContacts";
-import PropTypes from "prop-types";
+import CreateContact from "./CreateContact";
 
 class App extends React.Component {
   state = {
-    contacts: []
+    contacts: [],
+    screen: "create"
   };
 
   async componentDidMount() {
@@ -16,15 +18,20 @@ class App extends React.Component {
     this.setState(oldState => ({
       contacts: oldState.contacts.filter(c => c.id !== contact.id)
     }));
-    await remove(contact)
+    await remove(contact);
   };
 
   render() {
     return (
-      <ListContact
-        contacts={this.state.contacts}
-        removeContact={this.removeContact}
-      />
+      <div>
+        {this.state.screen === "list" && (
+          <ListContact
+            contacts={this.state.contacts}
+            removeContact={this.removeContact}
+          />
+        )}
+        {this.state.screen === "create" && <CreateContact />}
+      </div>
     );
   }
 }
